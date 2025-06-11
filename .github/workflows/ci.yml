@@ -10,7 +10,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup PowerShell
-        uses: azure/setup-powershell@v1
+         uses: PowerShell/PowerShell@v1
+
 
       - name: Run VM Script
         run: |
