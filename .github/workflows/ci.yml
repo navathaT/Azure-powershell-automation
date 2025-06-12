@@ -1,25 +1,24 @@
-name: Azure VM Automation
+name: Azure PowerShell VM Deployment
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions
-
-    - name: Setup PowerShell Core
-      uses: PowerShell
+    - name: Checkout repo
+      uses: actions/checkout@v2
 
     - name: Install Az Module
       shell: pwsh
       run: |
         Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
         Import-Module Az
+        Get-Module Az -ListAvailable
 
     - name: Run PowerShell Script
       shell: pwsh
