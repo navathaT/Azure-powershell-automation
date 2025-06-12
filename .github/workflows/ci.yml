@@ -10,10 +10,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions
 
     - name: Setup PowerShell Core
-      uses: PowerShell/PowerShell@v1
+      uses: PowerShell
 
     - name: Install Az Module
       shell: pwsh
