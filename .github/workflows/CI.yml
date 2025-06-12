@@ -1,0 +1,26 @@
+name: Azure Automation CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup PowerShell
+      uses: PowerShell/PowerShell@v1
+
+    - name: Install Az Module
+      shell: pwsh
+      run: |
+        Install-Module Az -Scope CurrentUser -Force -AllowClobber
+        Import-Module Az
+
+    - name: Run PowerShell Script
+      shell: pwsh
+      run: ./create-vm.ps1
