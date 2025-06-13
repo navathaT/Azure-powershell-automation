@@ -1,4 +1,4 @@
-name: PowerShell Azure VM Creation
+name: Azure VM Creation with PowerShell
 
 on:
   push:
@@ -7,18 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup PowerShell
-        uses: PowerShell/setup-powershell@v1
-
-      - name: Install Az Module
+      - name: Install PowerShell Az module
         run: |
-          Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber
-        shell: pwsh
-
-      - name: Run script
+          pwsh -Command "Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber"
+      
+      - name: Run VM creation script
         run: |
           pwsh ./create-vm.ps1
